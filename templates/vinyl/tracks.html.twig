@@ -1,0 +1,41 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ title|title }} | {{ parent() }} {% endblock %}
+
+{% block body %}
+
+<div class="lg:flex lg:items-center lg:justify-between">
+    <div class="min-w-0 flex-1">
+        <h2 class="p-4 text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">{{title|title}}</h2>
+    </div>
+</div>
+
+
+<!-- Component Start -->
+<div class="w-9/12 justify-center justify-self-center">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400"">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+            <th scope="col" class="py-3 px-6"></th>
+            <th scope="col" class="py-3 px-6">Song</th>
+            <th scope="col" class="py-3 px-6">Artist</th>
+            <th scope="col" class="py-3 px-6">Year</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for track in tracks %}
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:shadow-2xl">
+            <td>{{loop.index}}.</td>
+            <td class="py-4 px-6">{{track.name}}</td>
+            <td class="py-4 px-6">{{track.artist.name}}</td>
+            <td class="py-4 px-6">{{track.duration|date('i:s')}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+<!-- Component End  -->
+
+
+{% endblock %}

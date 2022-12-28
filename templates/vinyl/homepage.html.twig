@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ title }} | {{ parent() }} {% endblock %}
+
+{% block body %}
+
+<div class="lg:flex lg:items-center lg:justify-between">
+    <div class="min-w-0 flex-1">
+        <h2 class="p-4 text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">{{title}}</h2>
+    </div>
+</div>
+
+
+<!-- Component Start -->
+<div class="grid grid-cols-4 md:grid-cols-4 gap-4 justify-evenly">
+    {% for artist in artists %}
+    <div class="w-64 bg-white shadow-2xl p-6 rounded-2xl shadow-lg hover:shadow-2xl">
+        <a href="{{path('app_browse_genre', { 'id': artist.name })}}">
+        <h4 class="block text-xl font-semibold mt-4">{{ loop.index }}. {{artist.name}}</h4>
+        <p class="text-green-500">{{artist.playcount|number_format}} Plays</p>
+        <p class="ml-1 text-gray-500">{{artist.listeners|number_format}} Listeners</p>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+<!-- Component End  -->
+
+
+{% endblock %}

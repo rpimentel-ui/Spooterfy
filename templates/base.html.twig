@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Spooooterfy!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+        <div class="w-full flex flex-col sm:flex-row flex-grow overflow-hidden">
+            <div class="sm:w-1/3 md:1/4 w-full flex-shrink flex-grow-0 p-4 nav-sidebar bg-slate-800">
+                <div class="sticky top-0 p-4 w-full">
+                    <ul class="flex sm:flex-col overflow-hidden content-center justify-between">
+                        {% block nav %}
+                            {% include "nav.html.twig" %}
+                        {% endblock %}
+                    </ul>
+                </div>
+            </div>
+            <main role="main" class="w-full h-full flex-grow p-3 overflow-auto">
+                {% block body_header %}
+                    {% include "header.html.twig" %}
+                {% endblock %}
+
+                {% block body %}{% endblock %}
+            </main>
+        </div>
+        <footer class="fixed bottom-0">
+            ...
+        </footer>
+    </body>
+</html>
